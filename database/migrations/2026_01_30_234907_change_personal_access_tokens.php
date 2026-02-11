@@ -1,0 +1,25 @@
+<?php
+
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        
+        DB::statement('ALTER TABLE personal_access_tokens ALTER COLUMN token TYPE VARCHAR(64);');
+
+        
+        DB::statement('ALTER TABLE personal_access_tokens ALTER COLUMN abilities TYPE text;');
+    }
+
+    public function down(): void
+    {
+        DB::statement('ALTER TABLE personal_access_tokens ALTER COLUMN token TYPE CHAR(1);');
+        DB::statement('ALTER TABLE personal_access_tokens ALTER COLUMN abilities TYPE CHAR(1);');
+    }
+};
