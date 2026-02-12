@@ -20,7 +20,6 @@ class FlujoActividad extends Model
         "fecha_mov",
         "observacion",
         "estado_ant",
-        "estado",
     ];
 
     protected $casts = [
@@ -37,6 +36,10 @@ class FlujoActividad extends Model
 
     public function estado()
     {
-        return $this->belongsTo(Estado::class, 'id_estado');
+        return $this->belongsTo(
+            Estado::class,
+            'id_estado',
+            'id_estado'
+        );
     }
 }
