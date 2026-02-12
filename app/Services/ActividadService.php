@@ -42,4 +42,24 @@ class ActividadService
             return $cabecera->load('detalles', 'ultimoFlujo.estado');
         });
     }
+
+    public function actualizarActividad($idActividad, array $data, $codUsuario)
+    {
+        $actividad = ActividadCabecera::findOrFail($idActividad);
+    
+        // Actualizar campos
+        $actividad->update([
+            'titulo'            => $data['titulo'],
+            'descripcion'       => $data['descripcion'],
+            'id_frecuencia'     => $data['id_frecuencia'],
+            'cant_frecuencia'   => $data['cant_frecuencia'],
+            'id_prioridad'      => $data['id_prioridad'],
+            'id_unidad_espacio' => $data['id_unidad_espacio'],
+            'id_categoria'      => $data['id_categoria'],
+            'tip_actividad'     => $data['tip_actividad'],
+        ]);
+    
+        return $actividad->load(['frecuencia', 'detalles', 'ultimoFlujo.estado']);
+    }
+
 }
