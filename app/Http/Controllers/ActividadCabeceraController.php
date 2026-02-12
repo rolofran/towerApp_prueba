@@ -1,19 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Services\ActividadService;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use App\Models\ActividadCabecera;
+use App\Services\ActividadService;
 
 class ActividadCabeceraController extends Controller
 {
     public function index()
     {
-        return ActividadCabecera::with([
-            'frecuencia',
+        $actividades = ActividadCabecera::with([
+            'frecuencia:id_frecuencia,descripcion',
+            'prioridad:id_prioridad,descripcion',
+            'unidadEspacio:id_unidad_espacio,descripcion',
+            'categoria:id_categoria,nom_categoria',
             'detalles',
-            'ultimoFlujo.estado'
+            'ultimoFlujo'
         ])->get();
+
+        return response()->json($actividades);
     }
 
     public function store(Request $request, ActividadService $service)
