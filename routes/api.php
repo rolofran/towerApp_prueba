@@ -80,7 +80,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/actividades', [ActividadCabeceraController::class, 'index']);
     Route::post('/actividades', [ActividadCabeceraController::class, 'store']);
-
+    Route::post('/actividades/{id}', [ActividadCabeceraController::class, 'update']);
     Route::post(
         '/actividades/{idActividadCab}/cambiar-estado',
         [FlujoActividadController::class, 'cambiarEstado']
