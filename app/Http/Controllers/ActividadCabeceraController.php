@@ -24,18 +24,30 @@ class ActividadCabeceraController extends Controller
         foreach ($actividades as $a) {
             foreach ($a->detalles as $d) {
                 $resultado->push([
-                    'id_actividad'  => $a->id_actividad_cab,
-                    'id_detalle'    => $d->id_actividad_det,
-                    'titulo'        => $a->titulo,
-                    'descripcion'   => $a->descripcion,
-                    'prioridad'     => $a->prioridad->descripcion ?? null,
-                    'frecuencia'    => $a->frecuencia->descripcion ?? null,
-                    'unidad_espacio'=> $a->unidadEspacio->descripcion ?? null,
-                    'estado'        => $a->ultimoFlujo->estado->descripcion ?? null,
-                    'fecha_evento'  => $d->fecha_evento,
-                    'hora_desde'    => $d->hora_desde,
-                    'hora_hasta'    => $d->hora_hasta,
-                ]);
+                        'id_actividad'     => $a->id_actividad_cab,
+                        'id_detalle'       => $d->id_actividad_det,
+                        'titulo'           => $a->titulo,
+                        'descripcion'      => $a->descripcion,
+                    
+                        'id_prioridad'     => $a->id_prioridad,
+                        'prioridad'        => $a->prioridad->descripcion ?? null,
+                    
+                        'id_frecuencia'    => $a->id_frecuencia,
+                        'frecuencia'       => $a->frecuencia->descripcion ?? null,
+                    
+                        'id_unidad_espacio'=> $a->id_unidad_espacio,
+                        'unidad_espacio'   => $a->unidadEspacio->descripcion ?? null,
+                    
+                        'id_estado'        => $a->ultimoFlujo->id_estado ?? null,
+                        'estado'           => $a->ultimoFlujo->estado->descripcion ?? null,
+                    
+                        'id_categoria'     => $a->id_categoria,
+                        'categoria'        => $a->categoria->nom_categoria ?? null,
+                    
+                        'fecha_evento'     => $d->fecha_evento,
+                        'hora_desde'       => $d->hora_desde,
+                        'hora_hasta'       => $d->hora_hasta,
+                    ]);
             }
         }
 
